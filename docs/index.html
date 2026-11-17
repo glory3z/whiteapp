@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru" data-type="software">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e1edf9">
+  <meta name="page-type" content="software">
+  <meta name="site-kind" content="software">
+  <meta name="description" content="Каталог WhiteApp для iPhone. Найдите приложение, посмотрите скриншоты и откройте его официальную страницу.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="WhiteApp · Каталог для iPhone">
+  <meta property="og:description" content="Российские сервисы, платные приложения и игры в одном каталоге.">
+  <meta property="og:url" content="https://glory3z.github.io/whiteapp/">
+  <meta property="og:image" content="https://glory3z.github.io/whiteapp/media/whiteapp.png">
+  <title>WhiteApp · Каталог для iPhone</title>
+  <link rel="icon" href="./media/whiteapp.png" type="image/png">
+  <link rel="apple-touch-icon" href="./media/whiteapp.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://telegram.org/js/telegram-web-app.js?62" defer></script>
+  <script src="./catalog.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">К содержимому</a>
+  <div class="top-wrap">
+    <header class="topbar frame">
+      <a class="wordmark" href="#home" data-route="#home" aria-label="WhiteApp, главная">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>White<span class="brand-accent">App</span></span>
+      </a>
+      <button class="square-button menu-trigger" type="button" data-action="menu" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false">
+        <span data-icon="menu"></span>
+      </button>
+    </header>
+  </div>
+  <main class="frame page" id="main" tabindex="-1">
+    <section class="hero-search surface">
+      <h1>Найдите приложение для себя</h1>
+      <p>Загружаем каталог WhiteApp.</p>
+    </section>
+  </main>
+  <noscript><p class="frame">Включите JavaScript, чтобы открыть каталог.</p></noscript>
+
+  <button class="support-fab" type="button" aria-label="Открыть поддержку" aria-haspopup="dialog" aria-controls="support" data-action="support">
+    <span data-icon="message"></span>
+  </button>
+  <nav class="dock" aria-label="Основная навигация" id="dock">
+    <span class="dock-marker" aria-hidden="true"></span>
+    <a href="#home" data-route="#home" data-nav="home" aria-current="page"><span data-icon="home"></span><span>Главная</span></a>
+    <a href="#catalog" data-route="#catalog" data-nav="catalog" data-focus-search><span data-icon="search"></span><span>Поиск</span></a>
+    <button type="button" data-action="menu" data-nav="menu" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false"><span data-icon="menuSmall"></span><span>Меню</span></button>
+  </nav>
+
+  <dialog id="menu" class="drawer" aria-labelledby="menu-title">
+    <div class="drawer-content">
+      <div class="drawer-top">
+        <h2 class="wordmark" id="menu-title"><span class="brand-mark" aria-hidden="true"></span><span>White<span class="brand-accent">App</span></span></h2>
+        <button class="square-button close-button" type="button" data-action="close" aria-label="Закрыть меню"><span data-icon="close"></span></button>
+      </div>
+      <div id="menu-content"></div>
+    </div>
+  </dialog>
+
+  <dialog id="install" class="install-dialog" aria-labelledby="install-title">
+    <div id="install-content"></div>
+  </dialog>
+
+  <dialog id="support" class="chat-dialog" aria-labelledby="support-title">
+    <header class="chat-header">
+      <div><h2 id="support-title">Поддержка</h2><p>Частые вопросы</p></div>
+      <button class="square-button chat-close" type="button" data-action="close" aria-label="Закрыть поддержку"><span data-icon="close"></span></button>
+    </header>
+    <div class="chat-messages" id="chat-messages" role="log" aria-label="Переписка" aria-live="polite" tabindex="0">
+      <p class="bubble">Здравствуйте! Чем можем помочь? Выберите быстрый вопрос ниже или напишите свой.</p>
+    </div>
+    <div class="chat-tools">
+      <div class="chat-quick horizontal" id="chat-quick" aria-label="Быстрые вопросы"></div>
+      <form class="chat-form" id="chat-form">
+        <label class="sr-only" for="chat-input">Ваш вопрос</label>
+        <input id="chat-input" name="message" type="text" placeholder="Напишите вопрос" autocomplete="off" maxlength="400" required>
+        <button class="send-button" type="submit" aria-label="Показать ответ"><span data-icon="send"></span></button>
+      </form>
+      <a class="chat-link" href="https://t.me/setupruappsbot" data-external>@setupruappsbot <span data-icon="external"></span></a>
+    </div>
+  </dialog>
+</body>
+</html>
