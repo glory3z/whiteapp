@@ -10,8 +10,8 @@ const menu = document.querySelector('#menu');
 const install = document.querySelector('#install');
 const support = document.querySelector('#support');
 const chatMessages = document.querySelector('#chat-messages');
-const webApp = window.Telegram?.WebApp;
-const inTelegram = Boolean(webApp && (webApp.initData || webApp.platform !== 'unknown'));
+let webApp;
+let inTelegram = false;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const supportUrl = 'https://t.me/setupruappsbot';
 const contactUrl = 'https://t.me/yupi_iri';
@@ -51,7 +51,7 @@ const faq = [
   {
     title: 'Как установить приложение?',
     matches: /установ|скач|app store|апп стор|получить/,
-    answer: 'Откройте карточку приложения и нажмите «Скачать». Для приложений из App Store откроется страница Apple, где можно проверить цену и начать загрузку. Для остальных в инструкции есть официальный сайт и доступные варианты для iPhone.'
+    answer: 'Откройте карточку приложения и нажмите «Скачать». В инструкции есть кнопка перехода в App Store, где можно проверить цену и начать загрузку. Для остальных в инструкции есть официальный сайт и доступные варианты для iPhone.'
   },
   {
     title: 'Экранная задержка',
@@ -799,7 +799,12 @@ document.addEventListener('focusout', () => requestAnimationFrame(() => {
 }));
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-if (inTelegram) {
+function connectTelegram() {
+  if (inTelegram) return;
+  const client = window.Telegram?.WebApp;
+  if (!client || (!client.initData && client.platform === 'unknown')) return;
+  webApp = client;
+  inTelegram = true;
   webApp.ready();
   webApp.expand();
   if (webApp.isVersionAtLeast('6.9')) {
@@ -812,7 +817,10 @@ if (inTelegram) {
     webApp.onEvent('safeAreaChanged', updateInsets);
     webApp.onEvent('contentSafeAreaChanged', updateInsets);
   }
+  updateInsets();
+  updateNavigation();
 }
 
-updateInsets();
+document.querySelector('#telegram-sdk').addEventListener('load', connectTelegram, { once: true });
 render(false, 0, false);
+connectTelegram();
