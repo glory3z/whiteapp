@@ -26,4 +26,4 @@ GitHub Pages обслуживает папку `/docs` ветки `main`. В н�
 
 Для локальной проверки запустите `python3 -m http.server 8000 --directory docs` и откройте `http://localhost:8000/`.
 
-Данные о приложениях и скриншоты предоставлены App Store. Иконки российских сервисов получены с их официальных сайтов или из карточек App Store. Rubik распространяется на условиях OFL, текст лицензии в `docs/media/rubik-license.txt`. [Сведения об Apple Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/index.html)
+Данные о приложениях и скриншоты предоставлены App Store. Иконки приложений взяты из App Store, RuStore и с официальных сайтов разработчиков. Rubik распространяется на условиях OFL, текст лицензии в `docs/media/rubik-license.txt`. [Сведения об Apple Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/index.html)

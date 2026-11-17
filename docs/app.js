@@ -616,7 +616,7 @@ function openInstall(app) {
     <p class="install-note">Используйте свой аккаунт Apple для App Store. Храните пароли и коды подтверждения при себе.</p>
     <button type="button" data-action="video" class="action outline" aria-expanded="false" aria-controls="install-video">${icon('play')} Смотреть видеоинструкцию</button>
     <video id="install-video" width="396" height="700" controls playsinline preload="none" hidden>
-      <source src="./media/install-guide.mp4?v=2" type="video/mp4">
+      <source src="./media/install-guide.mp4?v=3" type="video/mp4">
       <track kind="captions" src="./media/install-guide.vtt?v=2" srclang="ru" label="Русский">
     </video>
     <a class="action" href="${escapeHtml(app.url)}" data-external>${isStore ? 'Открыть в App Store' : 'Открыть официальный сайт'} ${icon('external')}</a>
