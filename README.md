@@ -11,7 +11,7 @@
 3. Вставьте адрес каталога и укажите название кнопки `TapAxis`. [Адрес каталога](https://glory3z.github.io/whiteapp/)
 4. Откройте своего бота на iPhone и проверьте кнопку меню.
 
-Ссылки для связи находятся в `docs/app.js`. [Документация Telegram Mini Apps](https://core.telegram.org/bots/webapps#launching-mini-apps-from-the-menu-button)
+[Документация Telegram Mini Apps](https://core.telegram.org/bots/webapps#launching-mini-apps-from-the-menu-button)
 
 ## Где менять каталог
 

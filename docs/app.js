@@ -13,8 +13,6 @@ const chatMessages = document.querySelector('#chat-messages');
 let webApp;
 let inTelegram = false;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const supportUrl = 'https://t.me/setupruappsbot';
-const contactUrl = 'https://t.me/yupi_iri';
 
 const glyphs = {
   home: '<path d="M3.5 10.5 12 3l8.5 7.5V21h-17z"/><path d="M9 21v-6h6v6"/>',
@@ -72,9 +70,7 @@ const faq = [
   {
     title: 'Таймер истёк / Неверные данные',
     matches: /таймер|неверн|ист[ее]к|ошибк/,
-    answer: 'Если приложение показало ошибку, откройте его официальную страницу заново. Если проблема осталась, напишите название приложения и текст ошибки в чат бота.',
-    helpUrl: supportUrl,
-    helpLabel: 'Открыть чат поддержки'
+    answer: 'Откройте официальный сайт из карточки приложения. Если ошибка повторяется, проверьте раздел помощи на сайте разработчика.'
   },
   {
     title: 'Приложение недоступно',
@@ -239,7 +235,7 @@ function footer() {
   return `<footer class="footer">
     ${wordmark()}
     <p>Каталог приложений, игр и веб-сервисов для iPhone.</p>
-    <a href="${supportUrl}" data-external>Поддержка в Telegram</a>
+    <button class="footer-support" type="button" data-action="support">Поддержка</button>
   </footer>`;
 }
 
@@ -624,7 +620,6 @@ function openInstall(app) {
       <track kind="captions" src="./media/install-guide.vtt?v=2" srclang="ru" label="Русский">
     </video>
     <a class="action" href="${escapeHtml(app.url)}" data-external>${isStore ? 'Открыть в App Store' : 'Открыть официальный сайт'} ${icon('external')}</a>
-    <a class="contact" href="${contactUrl}" data-external>Написать по приложению ${icon('external')}</a>
   </div>`;
   showDialog(install);
   install.scrollTop = 0;
@@ -648,7 +643,7 @@ function answerChat(question, preset) {
   addChatMessage(question, { sent: true });
   const answer = preset ?? faq.find(item => item.matches.test(normalize(question)));
   if (answer) addChatMessage(answer.answer, answer);
-  else addChatMessage('По этому вопросу лучше написать в Telegram. Укажите название приложения и что не получилось.', { helpUrl: supportUrl, helpLabel: 'Открыть чат поддержки' });
+  else addChatMessage('Если вопрос об установке, откройте нужную карточку и нажмите «Скачать». Там есть инструкция и официальный источник.');
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
@@ -712,7 +707,6 @@ document.querySelectorAll('[data-icon]').forEach(element => {
   element.innerHTML = icon(element.dataset.icon);
 });
 
-document.querySelector('[data-support-link]').href = supportUrl;
 renderMenu();
 document.querySelector('#chat-quick').innerHTML = faq.map((item, index) => `<button type="button" class="chip" data-faq="${index}">${escapeHtml(item.title)}</button>`).join('');
 document.querySelector('#chat-form').addEventListener('submit', event => {
