@@ -1,6 +1,6 @@
 'use strict';
 
-const { apps, categories } = window.WhiteAppCatalog;
+const { apps, categories } = window.TapAxisCatalog;
 const appById = new Map(apps.map(app => [app.id, app]));
 const categoryById = new Map(categories.map(category => [category.id, category]));
 const main = document.querySelector('#main');
@@ -22,7 +22,7 @@ const glyphs = {
   menu: '<path d="M3 5h18M3 12h18M3 19h18"/>',
   menuSmall: '<path d="M4 6h16M4 12h16M4 18h16"/>',
   close: '<path d="m6 6 12 12M18 6 6 18"/>',
-  message: '<path d="M20.8 5.7a1.7 1.7 0 0 0-1.7-1.7H4.9a1.7 1.7 0 0 0-1.7 1.7v14l5-3.1h10.9a1.7 1.7 0 0 0 1.7-1.7z" fill="currentColor" stroke="none"/><circle cx="8" cy="10.4" r="1" fill="#1054cf" stroke="none"/><circle cx="12" cy="10.4" r="1" fill="#1054cf" stroke="none"/><circle cx="16" cy="10.4" r="1" fill="#1054cf" stroke="none"/>',
+  message: '<path d="M20.8 5.7a1.7 1.7 0 0 0-1.7-1.7H4.9a1.7 1.7 0 0 0-1.7 1.7v14l5-3.1h10.9a1.7 1.7 0 0 0 1.7-1.7z" fill="currentColor" stroke="none"/><circle cx="8" cy="10.4" r="1" fill="#254de6" stroke="none"/><circle cx="12" cy="10.4" r="1" fill="#254de6" stroke="none"/><circle cx="16" cy="10.4" r="1" fill="#254de6" stroke="none"/>',
   right: '<path d="m9 5 7 7-7 7"/>',
   left: '<path d="m15 5-7 7 7 7"/>',
   arrow: '<path d="M4 12h15m-6-6 6 6-6 6"/>',
@@ -30,14 +30,23 @@ const glyphs = {
   external: '<path d="M13 4h7v7m0-7-9 9"/><path d="M10 5H5v14h14v-5"/>',
   play: '<path d="m8 4 13 8-13 8z" fill="currentColor" stroke="none"/>',
   send: '<path d="m21 3-7 18-3.5-7.5L3 10zM21 3 10.5 13.5"/>',
-  download: '<path d="M12 3v12m-5-5 5 5 5-5M4 19v2h16v-2"/>'
+  download: '<path d="M12 3v12m-5-5 5 5 5-5M4 19v2h16v-2"/>',
+  food: '<path d="M4 4v4a3 3 0 0 0 6 0V4M7 4v17m12 0V4c-3 2-4 5-4 8h4"/>',
+  health: '<path d="M20.7 8.7c0 4.1-8.7 9.8-8.7 9.8s-8.7-5.7-8.7-9.8A4.2 4.2 0 0 1 12 7a4.2 4.2 0 0 1 8.7 1.7Z"/>',
+  games: '<path d="M8 8h8a4 4 0 0 1 3.8 2.9l1.2 4.4a2.2 2.2 0 0 1-3.8 2.1L15 15H9l-2.2 2.4A2.2 2.2 0 0 1 3 15.3l1.2-4.4A4 4 0 0 1 8 8Z"/><path d="M7 11v4m-2-2h4m6.9-.9h.2m2.1 1.7h.2"/>',
+  learning: '<path d="M12 6c-3.1-2-6-2.4-9-1v13c3-1.4 5.9-1 9 1 3.1-2 6-2.4 9-1V5c-3-1.4-5.9-1-9 1Zm0 0v13"/>',
+  social: '<path d="M21 11a8 8 0 0 1-8 8H8l-4 2v-4a8 8 0 0 1 5-14h4a8 8 0 0 1 8 8Z"/><path d="M8 11h8"/>',
+  shopping: '<path d="M5 8h14l1.5 12H3.5L5 8Zm4 2V7a3 3 0 0 1 6 0v3"/>',
+  tools: '<path d="M14 6a5 5 0 0 0-6.6 6.6L3.5 17l3.5 3.5 4.4-3.9A5 5 0 0 0 18 10l-2.8 2.8-3-3L15 7Z"/>',
+  travel: '<path d="M21 3 3 11l7 3 3 7L21 3Zm-11 11 5-5"/>',
+  work: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V4h8v3M3 12c5 2 13 2 18 0m-9 1v3"/>',
+  entertainment: '<rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="m10 9 5 3-5 3Z"/>',
+  navigation: '<circle cx="12" cy="12" r="8.5"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/>',
+  finance: '<rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M3 10h18m-14 5h3"/>',
+  star: '<path d="m12 3.5 2.6 5.4 6 .9-4.3 4.2 1 6-5.3-2.8-5.3 2.8 1-6-4.3-4.2 6-.9Z"/>'
 };
 
-const wallRows = [
-  ['procreate-pocket', 'sber', 'vk-music', 'vkontakte', 'mail-ru', 'avito', 'balatro', 'renaissance', '2am-cam'],
-  ['odnoklassniki', 'tbank', 'max-messenger', 'minecraft', 'vk-video', 'stardew-valley', 'geometry-dash', 'cloverpit', 'incredibox'],
-  ['monopoly', 'dzen', 'rutube', 'yandex-maps', 'gta-san-andreas', 'pou', 'paprika', 'bloons-td-6', 'fl-studio-mobile']
-];
+const featured = ['vkontakte', 'minecraft', 'sber', 'avito', 'procreate-pocket', 'max-messenger'];
 const highlights = ['sber', 'vkontakte', 'avito', 'max-messenger', 'minecraft', 'vk-video'];
 const games = ['gta-san-andreas', 'minecraft', 'balatro', 'stardew-valley', 'farming-simulator-26', 'geometry-dash'];
 const selected = ['mail-ru', 'avito', 'procreate-pocket', 'tbank', 'shadowrocket', 'dzen'];
@@ -65,12 +74,12 @@ const faq = [
     matches: /таймер|неверн|ист[ее]к|ошибк/,
     answer: 'Если приложение показало ошибку, откройте его официальную страницу заново. Если проблема осталась, напишите название приложения и текст ошибки в чат бота.',
     helpUrl: supportUrl,
-    helpLabel: '@setupruappsbot'
+    helpLabel: 'Открыть чат поддержки'
   },
   {
     title: 'Приложение недоступно',
     matches: /недоступ|регион|удален|пропал/,
-    answer: 'Доступность приложений зависит от региона App Store. Если карточка магазина не открывается, проверьте ссылку на официальный сайт в карточке WhiteApp.'
+    answer: 'Доступность приложений зависит от региона App Store. Если карточка магазина не открывается, проверьте ссылку на официальный сайт в карточке приложения.'
   }
 ];
 
@@ -134,9 +143,9 @@ function navigate(href, options = {}) {
   const prior = location.hash || '#home';
   closeDialog();
   if (prior !== href) {
-    const keepState = { ...history.state, whiteapp: true, scroll: window.scrollY };
+    const keepState = { ...history.state, tapaxis: true, scroll: window.scrollY };
     history.replaceState(keepState, '');
-    history.pushState({ whiteapp: true, from: prior, scroll: 0 }, '', href);
+    history.pushState({ tapaxis: true, from: prior, scroll: 0 }, '', href);
     activeRoute = readRoute();
     render(options.focusSearch);
     return;
@@ -150,16 +159,16 @@ function render(focusSearch = false, scroll = 0, focusMain = true) {
   dock.hidden = activeRoute.page === 'app';
   const page = activeRoute.page;
   if (page === 'home') {
-    document.title = 'WhiteApp · Каталог для iPhone';
+    document.title = 'TapAxis · Каталог для iPhone';
     renderHome();
   } else if (page === 'catalog') {
-    document.title = 'Каталог · WhiteApp';
+    document.title = 'Каталог · TapAxis';
     renderCatalog();
   } else if (page === 'app') {
-    document.title = activeRoute.app.name + ' · WhiteApp';
+    document.title = activeRoute.app.name + ' · TapAxis';
     renderDetail(activeRoute.app);
   } else {
-    document.title = 'Карточка не найдена · WhiteApp';
+    document.title = 'Карточка не найдена · TapAxis';
     main.innerHTML = `<div class="surface empty-state"><h1>Приложение не найдено</h1><p>Эта карточка отсутствует в каталоге.</p><a href="#catalog" data-route="#catalog" class="action">Открыть каталог</a></div>`;
   }
   updateNavigation();
@@ -223,7 +232,7 @@ function categoryLink(label, badge, href) {
 }
 
 function wordmark() {
-  return '<a class="wordmark" href="#home" data-route="#home" aria-label="WhiteApp, главная"><span class="brand-mark" aria-hidden="true"></span><span>White<span class="brand-accent">App</span></span></a>';
+  return '<a class="wordmark" href="#home" data-route="#home" aria-label="TapAxis, главная"><span class="brand-mark" aria-hidden="true"></span><span>TapAxis</span></a>';
 }
 
 function footer() {
@@ -248,24 +257,30 @@ function searchForm(id, value, suggestions = false) {
 }
 
 function renderHome() {
-  const wall = wallRows.map(ids => `<div class="icon-wall-row">${ids.map(id => {
+  const showcase = featured.map(id => {
     const app = appById.get(id);
     const href = appRoute(app);
-    return `<a class="wall-link" href="${href}" data-route="${href}" aria-label="${escapeHtml(app.name)}">${iconMarkup(app, true)}</a>`;
-  }).join('')}</div>`).join('');
+    return `<a class="hero-app" href="${href}" data-route="${href}" aria-label="${escapeHtml(app.name)}">${iconMarkup(app, true)}</a>`;
+  }).join('');
 
   main.innerHTML = `
-    <div class="icon-wall" aria-label="Приложения из каталога">${wall}</div>
-    <section class="hero-search surface">
-      <h1>Найдите приложение для себя</h1>
-      ${searchForm('home-search', homeQuery, true)}
+    <section class="hero-search surface" aria-labelledby="home-title">
+      <div class="hero-main">
+        <h1 id="home-title">Приложения <span>для iPhone</span></h1>
+        ${searchForm('home-search', homeQuery, true)}
+        <div class="hero-filters" aria-label="Разделы каталога">
+          <a class="chip" href="#catalog?view=ru" data-route="#catalog?view=ru">Российские ${icon('right')}</a>
+          <a class="chip" href="#catalog?view=paid" data-route="#catalog?view=paid">Платные ${icon('right')}</a>
+        </div>
+      </div>
+      <div class="hero-showcase" aria-label="Приложения из каталога">${showcase}</div>
     </section>
     ${shelf('Популярное', highlights, '#catalog', true)}
-    ${shelf('Игры месяца', games, catalogRoute('all', 'games'), true, 'Ещё')}
-    ${shelf('Выберите приложение', selected, '#catalog')}
+    ${shelf('Игры', games, catalogRoute('all', 'games'), true, 'Ещё')}
+    ${shelf('Из каталога', selected, '#catalog')}
     <section class="page-section">
       ${sectionHeading('Категории', `<span class="count">${categories.length}</span>`)}
-      <div class="category-grid">${categories.map(category => categoryLink(category.name, category.emoji, catalogRoute('all', category.id))).join('')}</div>
+      <div class="category-grid">${categories.map(category => categoryLink(category.name, icon(category.id), catalogRoute('all', category.id))).join('')}</div>
     </section>
     <a class="all-banner" href="#catalog" data-route="#catalog">${icon('apps')}<strong>Полный каталог</strong><span class="count">${apps.length}</span>${icon('arrow')}</a>
     ${footer()}`;
@@ -293,7 +308,7 @@ function renderCatalog() {
     activeRoute.query = query;
     const category = activeRoute.category?.id ?? '';
     const href = catalogRoute(activeRoute.scope, category, query);
-    history.replaceState({ ...history.state, whiteapp: true }, '', href);
+    history.replaceState({ ...history.state, tapaxis: true }, '', href);
     main.querySelectorAll('[data-filter]').forEach(link => {
       const filterHref = catalogRoute(link.dataset.filter, category, query);
       link.href = filterHref;
@@ -398,7 +413,7 @@ function wireSearch(id, onChange, hasSuggestions = false) {
   form.addEventListener('focusout', event => {
     if (event.relatedTarget && !form.contains(event.relatedTarget)) hide();
   });
-  form.addEventListener('whiteapp-hide-suggestions', hide);
+  form.addEventListener('tapaxis-hide-suggestions', hide);
   input.addEventListener('keydown', event => {
     if (!hasSuggestions || popover.hidden) return;
     if (event.key === 'Escape') {
@@ -448,8 +463,8 @@ function stars(value) {
   return `<span class="stars" aria-label="${value} из 5">${'★'.repeat(rounded)}${'☆'.repeat(5 - rounded)}</span>`;
 }
 
-function reviewCard(author, score, content) {
-  return `<article class="review-card"><header><strong>${escapeHtml(author)} <small>Пример</small></strong>${stars(score)}</header><p>${escapeHtml(content)}</p></article>`;
+function reviewCard(score, content) {
+  return `<article class="review-card"><header><span class="review-caption">Пример отзыва</span>${stars(score)}</header><p>${escapeHtml(content)}</p></article>`;
 }
 
 function reviews(app) {
@@ -467,8 +482,7 @@ function reviews(app) {
     </form>
     <div id="review-preview" class="review-list" aria-live="polite" hidden></div>
     <div class="review-list" aria-label="Демонстрационные примеры отзывов">
-      <p class="review-label">Примеры отзывов с вымышленными авторами</p>
-      ${app.reviews.map(review => reviewCard(review.author, review.score, review.text)).join('')}
+      ${app.reviews.map(review => reviewCard(review.score, review.text)).join('')}
     </div>
   </section>`;
 }
@@ -479,10 +493,14 @@ function renderDetail(app) {
   const related = apps.filter(other => other.id !== app.id && other.category === app.category).slice(0, 3);
   main.innerHTML = `
     <section class="detail-card surface">
-      ${iconMarkup(app, true)}
-      <a class="detail-tag" href="${catalogRoute('all', category.id)}" data-route="${catalogRoute('all', category.id)}">${category.name}</a>
-      <h1>${escapeHtml(app.name)}</h1>
-      <p>${escapeHtml(app.subtitle)}</p>
+      <div class="detail-intro">
+        ${iconMarkup(app, true)}
+        <div>
+          <a class="detail-tag" href="${catalogRoute('all', category.id)}" data-route="${catalogRoute('all', category.id)}">${category.name}</a>
+          <h1>${escapeHtml(app.name)}</h1>
+          <p>${escapeHtml(app.subtitle)}</p>
+        </div>
+      </div>
       <div class="detail-actions">
         <button type="button" class="action" data-action="install" aria-haspopup="dialog" aria-controls="install">${icon('download')} Скачать</button>
         <button type="button" class="action secondary" data-action="back">Вернуться</button>
@@ -579,9 +597,9 @@ function renderMenu() {
     <nav class="drawer-links" aria-label="Меню каталога">
       ${categoryLink('Главная', icon('home'), '#home')}
       ${categoryLink('Все приложения', icon('apps'), '#catalog')}
-      ${categoryLink('Платные приложения', '★', catalogRoute('paid'))}
+      ${categoryLink('Платные приложения', icon('star'), catalogRoute('paid'))}
       <h3>Категории</h3>
-      ${categories.map(category => categoryLink(category.name, category.emoji, catalogRoute('all', category.id))).join('')}
+      ${categories.map(category => categoryLink(category.name, icon(category.id), catalogRoute('all', category.id))).join('')}
     </nav>`;
   wireSearch('menu-search', query => { menuQuery = query; }, true);
 }
@@ -602,11 +620,11 @@ function openInstall(app) {
     <p class="install-note">Используйте свой аккаунт Apple для App Store. Храните пароли и коды подтверждения при себе.</p>
     <button type="button" data-action="video" class="action outline" aria-expanded="false" aria-controls="install-video">${icon('play')} Смотреть видеоинструкцию</button>
     <video id="install-video" width="396" height="700" controls playsinline preload="none" hidden>
-      <source src="./media/install-guide.mp4" type="video/mp4">
-      <track kind="captions" src="./media/install-guide.vtt" srclang="ru" label="Русский">
+      <source src="./media/install-guide.mp4?v=2" type="video/mp4">
+      <track kind="captions" src="./media/install-guide.vtt?v=2" srclang="ru" label="Русский">
     </video>
     <a class="action" href="${escapeHtml(app.url)}" data-external>${isStore ? 'Открыть в App Store' : 'Открыть официальный сайт'} ${icon('external')}</a>
-    <a class="contact" href="${contactUrl}" data-external>Вопрос по каталогу <strong>@yupi_iri</strong> ${icon('external')}</a>
+    <a class="contact" href="${contactUrl}" data-external>Написать по приложению ${icon('external')}</a>
   </div>`;
   showDialog(install);
   install.scrollTop = 0;
@@ -630,7 +648,7 @@ function answerChat(question, preset) {
   addChatMessage(question, { sent: true });
   const answer = preset ?? faq.find(item => item.matches.test(normalize(question)));
   if (answer) addChatMessage(answer.answer, answer);
-  else addChatMessage('По этому вопросу лучше написать в Telegram. Укажите название приложения и что не получилось.', { helpUrl: supportUrl, helpLabel: '@setupruappsbot' });
+  else addChatMessage('По этому вопросу лучше написать в Telegram. Укажите название приложения и что не получилось.', { helpUrl: supportUrl, helpLabel: 'Открыть чат поддержки' });
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
@@ -694,6 +712,7 @@ document.querySelectorAll('[data-icon]').forEach(element => {
   element.innerHTML = icon(element.dataset.icon);
 });
 
+document.querySelector('[data-support-link]').href = supportUrl;
 renderMenu();
 document.querySelector('#chat-quick').innerHTML = faq.map((item, index) => `<button type="button" class="chip" data-faq="${index}">${escapeHtml(item.title)}</button>`).join('');
 document.querySelector('#chat-form').addEventListener('submit', event => {
@@ -713,7 +732,7 @@ document.querySelector('.skip-link').addEventListener('click', event => {
 
 document.addEventListener('pointerdown', event => {
   document.querySelectorAll('input[aria-expanded="true"]').forEach(input => {
-    if (!input.form.contains(event.target)) input.form.dispatchEvent(new Event('whiteapp-hide-suggestions'));
+    if (!input.form.contains(event.target)) input.form.dispatchEvent(new Event('tapaxis-hide-suggestions'));
   });
 });
 
@@ -808,10 +827,10 @@ function connectTelegram() {
   webApp.ready();
   webApp.expand();
   if (webApp.isVersionAtLeast('6.9')) {
-    webApp.setHeaderColor('#e1edf9');
-    webApp.setBackgroundColor('#e1edf9');
+    webApp.setHeaderColor('#f5f7fc');
+    webApp.setBackgroundColor('#f5f7fc');
   }
-  if (webApp.isVersionAtLeast('7.10')) webApp.setBottomBarColor('#e1edf9');
+  if (webApp.isVersionAtLeast('7.10')) webApp.setBottomBarColor('#f5f7fc');
   webApp.BackButton?.onClick(goBack);
   if (webApp.isVersionAtLeast('8.0')) {
     webApp.onEvent('safeAreaChanged', updateInsets);
